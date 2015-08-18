@@ -38,3 +38,4 @@ gem 'jquery-rails'
 # gem 'debugger'
 gem 'devise'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'kaminari'
