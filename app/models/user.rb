@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_one :picture, :as => :imageable
+  has_one :picture, as: :imageable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :picture_attributes
 
