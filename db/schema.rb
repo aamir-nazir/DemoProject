@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150818073917) do
+ActiveRecord::Schema.define(:version => 20150819043840) do
 
   create_table "pictures", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,12 @@ ActiveRecord::Schema.define(:version => 20150818073917) do
     t.decimal  "price",      :precision => 10, :scale => 0
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+  end
+
+  create_table "reviews", :force => true do |t|
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
