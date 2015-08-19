@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :picture, allow_destroy: true
 
+  has_many :products, dependent: :destroy
+
   def profile_picture
     self.picture.present? ? self.picture : self.build_picture
   end
