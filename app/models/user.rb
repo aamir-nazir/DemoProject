@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_many :products, dependent: :destroy
 
+  has_many :reviews, dependent: :destroy
+
   def profile_picture
     self.picture.present? ? self.picture : self.build_picture
   end
