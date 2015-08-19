@@ -1,11 +1,10 @@
 DemoProject::Application.routes.draw do
-  resources :reviews
-
-
-  resources :products
-
 
   devise_for :users
+
+  resources :products do
+    resources :reviews
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
