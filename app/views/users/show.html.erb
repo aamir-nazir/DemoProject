@@ -1,0 +1,24 @@
+<h1>User Show Page</h1>
+
+<table>
+  <tr>
+    <td>Name: </td>
+    <td><%= @user.first_name %> <%= @user.last_name %></td>
+    <td><%= image_tag @user.picture.photo.url, size: '100x100' if @user.picture.present? %></td>
+  </tr>
+  <tr>
+    <td>Email: </td>
+    <td><%= @user.email %></td>
+  </tr>
+</table>
+
+<table>
+  <h1>User Products</h1>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Price</th>
+  </tr>
+  <%= render @products %>
+  <%= paginate @products %>
+</table>
