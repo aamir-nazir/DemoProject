@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(params[:product])
+    @product.user_id = current_user.id
     @product.save
     respond_with(@product)
   end

@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_filter :set_review, only: [:show, :edit, :update, :destroy]
-  before_filter :set_product, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :set_product
 
   respond_to :html
 
@@ -21,6 +21,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @product.reviews.new(params[:review])
+    @review.user_id = current_user.id
     @review.save
     respond_to do |format|
       format.html { redirect_to product_reviews_path(@product) }

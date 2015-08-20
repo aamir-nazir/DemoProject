@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   has_many :reviews, dependent: :destroy
 
+  PRODUCTS_PER_PAGE = 5
+
   def profile_picture
     self.picture.present? ? self.picture : self.build_picture
   end
