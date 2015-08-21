@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:dashboard]
-  before_filter :set_user, only: [:set_user]
+  before_filter :set_user
 
   def show
     @products = @user.products.includes(:pictures).ordered.page(params[:page]).per(User::PRODUCTS_PER_PAGE)
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   private
     def set_user
-      @user = User.find(params[:id])
+      @user = params[:id].present? ? User.find(params[:id]) : User.find(current_user.id)
     end
 
 end
