@@ -1,2 +1,6 @@
-$('#reviews').append('<%= j render(@review) %>');
-$('#review_body').val("");
+<% if @review.valid? %>
+  $('#reviews').append('<%= j render(@review) %>')
+  $('#review_body').val("")
+<% else %>
+  alert("Please enter some text for review")
+<% end %>
