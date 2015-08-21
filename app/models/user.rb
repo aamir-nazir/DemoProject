@@ -6,12 +6,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :picture_attributes
-  accepts_nested_attributes_for :picture, allow_destroy: true
 
   validates :first_name, presence: true
   validates :last_name, presence: true
 
   has_one :picture, as: :imageable
+  accepts_nested_attributes_for :picture, allow_destroy: true
 
   has_many :products, dependent: :destroy
   has_many :reviews, dependent: :destroy
