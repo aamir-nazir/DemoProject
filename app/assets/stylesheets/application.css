@@ -11,3 +11,6 @@
  *= require_self
  *= require_tree .
  */
+.selected {
+  border: 1px solid black;
+}
