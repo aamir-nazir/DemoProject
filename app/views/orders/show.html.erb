@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @order.user_id %>
+</p>
+
+<p>
+  <b>Total items:</b>
+  <%= @order.total_items %>
+</p>
+
+<p>
+  <b>Sub total:</b>
+  <%= @order.sub_total %>
+</p>
+
+<p>
+  <b>Discount:</b>
+  <%= @order.discount %>
+</p>
+
+<%= link_to 'Back', orders_path %>

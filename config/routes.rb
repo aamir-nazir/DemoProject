@@ -2,6 +2,10 @@ DemoProject::Application.routes.draw do
 
   root :to => 'Products#index'
 
+  resources :users do
+    resources :orders, only: [:index, :show]
+  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 

@@ -1,0 +1,23 @@
+<h1>Listing orders</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Total items</th>
+    <th>Sub total</th>
+    <th>Discount</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= order.user_id %></td>
+    <td><%= order.total_items %></td>
+    <td><%= order.sub_total %></td>
+    <td><%= order.discount %></td>
+    <td><%= link_to 'Show', order %></td>
+  </tr>
+<% end %>
+</table>
