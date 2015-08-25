@@ -1,21 +1,36 @@
-<h1>Dashboard</h1>
-<h2>Listing User products</h2>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th>Price</th>
-  </tr>
-  <%= render @products %>
-  <%= paginate @products, param_name: 'product_page' %>
-</table>
+<div class="row">
+  <div class="col-md-12">
+    <h1 >Dashboard</h1>
+    <h2>Listing User products</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered text-center">
+        <tr class="bg-primary">
+          <th class="text-center">Title</th>
+          <th class="text-center">Body</th>
+          <th class="text-center">Price</th>
+          <th class="text-center"></th>
+          <th class="text-center"></th>
+          <th class="text-center"></th>
+          <th class="text-center"></th>
+        </tr>
+        <%= render @products %>
+        <%= paginate @products, param_name: 'product_page' %>
+      </table>
 
-<h2>Listing User reviews</h2>
-<table>
-  <tr>
-    <th>Review</th>
-    <th>Product Name</th>
-  </tr>
-  <%= render partial: 'reviews/user_review', collection: @reviews, as: :review %>
-  <%= paginate @reviews, param_name: 'review_page' %>
-</table>
+      <h2>Listing User reviews</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered text-center">
+          <tr class="bg-primary">
+            <th class="text-center">Review</th>
+            <th class="text-center">Product Name</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <%= render partial: 'reviews/user_review', collection: @reviews, as: :review %>
+          <%= paginate @reviews, param_name: 'review_page' %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,24 +1,39 @@
-<h1>User Show Page</h1>
+<div class="row">
+  <div class="col-md-12">
+    <h1>User Show Page</h1>
+    <div class="table-responsive">
+      <h2>User Profile</h2>
+      <table class="table table-bordered text-center">
+        <tr class="bg-primary">
+          <td class="text-center">Name </td>
+          <td class="text-center">Email </td>
+          <td class="text-center">Profile Picture </td>
+        </tr>
+        <tr>
+          <td><%= @user.first_name %> <%= @user.last_name %></td>
+          <td><%= @user.email %></td>
+          <td><%= image_tag @user.picture.photo.url, size: '100x100', class: "img-thumbnail" if @user.picture.present? %></td>
+        </tr>
+      </table>
+    </div>
 
-<table>
-  <tr>
-    <td>Name: </td>
-    <td><%= @user.first_name %> <%= @user.last_name %></td>
-    <td><%= image_tag @user.picture.photo.url, size: '100x100' if @user.picture.present? %></td>
-  </tr>
-  <tr>
-    <td>Email: </td>
-    <td><%= @user.email %></td>
-  </tr>
-</table>
-
-<table>
-  <h1>User Products</h1>
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th>Price</th>
-  </tr>
-  <%= render @products %>
-  <%= paginate @products %>
-</table>
+    <div class="table-responsive">
+      <h2>User Products</h2>
+      <table class="table table-bordered text-center">
+        <tr class="bg-primary">
+          <th class="text-center">Title</th>
+          <th class="text-center">Body</th>
+          <th class="text-center">Price</th>
+          <th class="text-center">Product Picture</th>
+          <% if user_authorized(@user.id) %>
+            <th></th>
+            <th></th>
+            <th></th>
+          <% end %>
+        </tr>
+        <%= render @products %>
+        <%= paginate @products %>
+      </table>
+    </div>
+  </div>
+</div>
