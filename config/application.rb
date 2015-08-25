@@ -58,5 +58,6 @@ module DemoProject
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.app_generators.scaffold_controller = :scaffold_controller
   end
 end
