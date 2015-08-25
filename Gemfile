@@ -42,3 +42,5 @@ gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'kaminari'
 gem 'nested_form'
 gem 'activeadmin'
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'autoprefixer-rails'
