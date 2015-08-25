@@ -1,63 +1,71 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class='row'>
+  <div class="col-md-4">
+    <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
-  <%= devise_error_messages! %>
+    <%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
+    <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, required: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, required: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, required: true %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off", required: true, minlength: 8 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", required: true, minlength: 8 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off", required: true  %>
-  </div>
-
-  <%= f.fields_for :picture, current_user.profile_picture do |user_picture| %>
-    <% if current_user.picture.photo.present? %>
-      <%= image_tag current_user.photo_url, size: '200x200' %>
-      <%= user_picture.link_to_remove "Remove Picture" %>
-    <% end %>
-  <% end %>
-
-  <%= f.fields_for :picture, current_user.profile_picture do |user_picture| %>
-    <div>
-      <%= user_picture.label :photo %>
-      <%= user_picture.file_field :photo %>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, required: true, placeholder: "abc@example.com", class: 'form-control' %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+    <div class="form-group">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, required: true, placeholder: "First Name", class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, required: true, placeholder: "Last Name", class: 'form-control' %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+      <%= f.password_field :password, autocomplete: "off", minlength: 8, placeholder: "Password", class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", minlength: 8, placeholder: "Password", class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+      <%= f.password_field :current_password, autocomplete: "off", required: true, placeholder: "Current Password", class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.fields_for :picture, current_user.profile_picture do |user_picture| %>
+      <% if current_user.picture.photo.present? %>
+      <%= image_tag current_user.photo_url, size:'100x100', class: "img-rounded" %>
+      <%= user_picture.link_to_remove "Remove Picture" %>
+      <% end %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.fields_for :picture, current_user.profile_picture do |user_picture| %>
+      <div>
+        <%= user_picture.label :photo, "Select Picture" %>
+        <%= user_picture.file_field :photo %>
+      </div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= f.submit "Update", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+
+    <h3>Cancel my account</h3>
+
+    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-primary" %></p>
+
+    <%= link_to "Back", :back, class: "btn btn-primary" %>
   </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
