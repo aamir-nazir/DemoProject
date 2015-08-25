@@ -1,39 +1,46 @@
-<p>
-  <b>Title:</b>
+<div>
+  <strong>Title:</strong>
   <%= @product.title %>
-</p>
+</div>
 
-<p>
-  <b>Body:</b>
+<div>
+  <strong>Body:</strong>
   <%= @product.body %>
-</p>
+</div>
 
-<p>
-  <b>Price:</b>
+<div>
+  <strong>Price:</strong>
   <%= @product.price %>
-</p>
+</div>
 
 <% @product.pictures.each do |product_picture| %>
-<div>
-  <%= image_tag product_picture.photo.url, size: '200x200' %>
+<div class="form-group">
+  <%= image_tag product_picture.photo.url, size: '200x200', class: "img-rounded" %>
 </div>
 <% end %>
 
-<div id="reviews">
-  <table>
-    <p>Reviews :</p>
+<div class="table-responsive">
+  <table class="table table-bordered text-center" id="reviews">
+    <tr class="bg-primary">
+      <th  class="text-center">Review Text</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <h2>Reviews</h2>
     <%= render @reviews %>
   </table>
 </div>
 
-  <%= render partial: 'reviews/review_form' unless user_authorized(@product.user_id) %>
+<div class="form-group">
+  <%= render partial: 'reviews/review_form' unless user_authorized(@product.user_id) || !user_signed_in? %>
+</div>
 
-<p>
-  <strong>Owner:</strong>
+<div class="form-group">
+  <strong>Product Owner:</strong>
   <%= @user.first_name %>
   <%= @user.last_name %>
-  <%= link_to 'Owner show page', user_path(@user) %>
-</p>
+  <%= link_to 'Owner show page', user_path(@user), class: "btn btn-primary" %>
+</div>
 
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
