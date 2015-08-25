@@ -9,11 +9,11 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.text_area :body, required: true %>
+  <div class="form-group">
+    <%= f.text_area :body, required: true, class: "form-control", rows: 4, placeholder: "Give product review" %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.submit  class: "btn btn-primary" %>
   </div>
 <% end %>
 
