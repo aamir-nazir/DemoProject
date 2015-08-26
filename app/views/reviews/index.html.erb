@@ -3,12 +3,12 @@
 <div id="reviews" class="table-responsive">
   <table class="table table-bordered text-center">
     <tr class="bg-primary">
-      <th class="text-center">Review Text</th>
+      <th class="text-center col-md-10">Review Text</th>
       <th></th>
     </tr>
     <tr>
     <% @reviews.each do |review| %>
-      <td ><%= review.body %></td>
+      <td ><%= truncate_text(200, review.body) %></td>
       <% if user_authorized(@product.user_id) || user_authorized(review.user_id) %>
         <td><%= link_to 'Destroy', product_review_path(@product, review), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% else %>

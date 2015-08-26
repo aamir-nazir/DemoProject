@@ -71,7 +71,6 @@ class ReviewsController < ApplicationController
 
   def validate_user_for_edit
     return redirect_to product_path(@product), notice: "User can only edit his own reviews!" unless current_user.id == @review.user_id
-    flash[:notice] = "Review edited Sucessfully!"
   end
 
 end
