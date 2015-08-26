@@ -12,7 +12,7 @@
         <tr>
           <td><%= @user.first_name %> <%= @user.last_name %></td>
           <td><%= @user.email %></td>
-          <td><%= image_tag @user.picture.photo.url(:small), class: "img-thumbnail" if @user.picture.present? %></td>
+          <td><%= image_tag user_photo(@user,:small), class: "img-thumbnail" %></td>
         </tr>
       </table>
     </div>

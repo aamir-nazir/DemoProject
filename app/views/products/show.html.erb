@@ -13,7 +13,7 @@
 
 <% @product.pictures.each do |product_picture| %>
 <div class="form-group">
-  <%= image_tag product_picture.photo.url, size: '200x200', class: "img-rounded" %>
+  <%= image_tag product_picture.photo.url(:small), class: "img-rounded" %>
 </div>
 <% end %>
 

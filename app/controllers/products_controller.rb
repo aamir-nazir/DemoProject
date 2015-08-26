@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
   def show
     @review = Review.new
     @reviews = @product.reviews
+    @product.pictures.build if @product.pictures.blank?
     respond_with(@product)
   end
 
