@@ -20,4 +20,17 @@ module ApplicationHelper
     picture = product.pictures.first || product.pictures.build
     picture.photo.url(size)
   end
+
+  def flash_class flash_type
+   { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" } [flash_type]
+  end
+
+  def cart_size
+    if cookies[:cart]
+      cart = JSON.parse(cookies[:cart])
+      cart.size
+    else
+      0
+    end
+  end
 end
