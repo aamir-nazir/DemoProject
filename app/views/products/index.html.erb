@@ -6,7 +6,7 @@
       <table class="table table-bordered text-center">
         <tr class="bg-primary">
           <th class="text-center">Title</th>
-          <th class="text-center">Body</th>
+          <th class="text-center col-md-6">Body</th>
           <th class="text-center">Price</th>
           <th></th>
           <th></th>
@@ -15,7 +15,7 @@
         <% @products.each do |product| %>
           <tr>
             <td><%= product.title %></td>
-            <td><%= product.body %></td>
+            <td><%= truncate_text(100, product.body) %></td>
             <td class="info" >$<%= product.price %></td>
             <td><%= link_to 'Show', product %></td>
             <% unless in_cart(product.id) %>

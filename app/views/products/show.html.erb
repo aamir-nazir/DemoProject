@@ -1,16 +1,14 @@
 <div>
-  <strong>Title:</strong>
-  <%= @product.title %>
+  <h2><%= @product.title %></h3>
 </div>
 
 <div>
-  <strong>Body:</strong>
+  <h4>Description:</h4>
   <%= @product.body %>
 </div>
 
 <div>
-  <strong>Price:</strong>
-  <%= @product.price %>
+  <h4>Price: <%= @product.price %></h4>
 </div>
 
 <% @product.pictures.each do |product_picture| %>

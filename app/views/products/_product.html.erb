@@ -1,6 +1,6 @@
 <tr>
   <td><%= product.title %></td>
-  <td><%= product.body %></td>
+  <td><%= truncate_text(200, product.body) %></td>
   <td><%= product.price %></td>
   <td><%= image_tag product.pictures.first.photo.url, size: '80x80', class: "img-rounded" if product.pictures.present? %></td>
   <% if user_authorized(@user.id) %>
