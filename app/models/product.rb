@@ -8,6 +8,7 @@ class Product < ActiveRecord::Base
   validates :price, presence: true
 
   scope :ordered, -> { order('id DESC') }
+  scope :find_products, ->(id) { where(id: id) }
 
   has_many :pictures, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :pictures, allow_destroy: true

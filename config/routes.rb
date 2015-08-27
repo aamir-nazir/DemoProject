@@ -6,6 +6,12 @@ DemoProject::Application.routes.draw do
     resources :orders, only: [:index, :show]
   end
 
+  resources :carts, only: [:index, :new] do
+    collection do
+      get :remove
+    end
+  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 

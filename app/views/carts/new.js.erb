@@ -1,0 +1,9 @@
+$('#cart-count').text('Total Cart Items: <%= cart_size %>');
+$("#<%= @product.id %>").attr('href', '/carts/remove');
+$("#<%= @product.id %>").text('Remove from cart');
+
+if ($("#total-price"))
+{
+  $("#total-price").text('$<%= @price %>');
+  $.cookie("price", <%= @price %>)
+}

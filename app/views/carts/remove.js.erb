@@ -1,0 +1,9 @@
+$('#cart-count').text('Total Cart Items: <%= cart_size %>');
+$("#<%= @product.id %>").attr('href', '/carts/new');
+$("#<%= @product.id %>").text('Add to cart');
+
+if ($("#total-price"))
+{
+  $("#total-price").text('$<%= @price %>');
+  $.cookie("price", <%= @price %>);
+}

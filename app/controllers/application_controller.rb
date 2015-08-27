@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def cart_encode(cart)
+    ActiveSupport::JSON.encode(cart)
+  end
+
 end

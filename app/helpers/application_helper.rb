@@ -26,11 +26,14 @@ module ApplicationHelper
   end
 
   def cart_size
-    if cookies[:cart]
-      cart = JSON.parse(cookies[:cart])
-      cart.size
-    else
-      0
-    end
+    return 0 unless cookies[:cart]
+    cart = JSON.parse(cookies[:cart])
+    cart.size
+  end
+
+  def in_cart(id)
+    return false unless cookies[:cart]
+    cart = JSON.parse(cookies[:cart])
+    cart.include?(id.to_s)
   end
 end
