@@ -2,7 +2,7 @@ DemoProject::Application.routes.draw do
 
   root :to => 'Products#index'
 
-  resources :users do
+  resources :users, only: [] do
     resources :orders, only: [:index, :show]
   end
 
