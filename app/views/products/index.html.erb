@@ -19,16 +19,16 @@
             <td class="info" >$<%= product.price %></td>
             <td><%= link_to 'Show', product %></td>
             <% unless in_cart(product.id) %>
-              <td ><%= link_to 'Add to cart', cart_add_path, data: { remote: true, params: { product_id: product.id}.to_param }, id: product.id %></td>
+              <td ><%= link_to 'Add to cart', new_cart_path, data: { remote: true, params: { product_id: product.id}.to_param }, id: product.id %></td>
             <% else %>
-              <td ><%= link_to 'Remove from cart', cart_remove_path, data: { remote: true, params: { product_id: product.id}.to_param }, id: product.id %></td>
+              <td ><%= link_to 'Remove from cart', remove_carts_path, data: { remote: true, params: { product_id: product.id }.to_param }, id: product.id %></td>
             <% end %>
           </tr>
         <% end %>
       </table>
 
       <%= link_to 'New Product', new_product_path, class: "btn btn-primary" %>
-      <%= link_to 'Show Cart', cart_path, class: "btn btn-primary" %>
+      <%= link_to 'Show Cart', carts_path, class: "btn btn-primary" %>
     <div>
   </div>
 </div>
