@@ -8,6 +8,7 @@ DemoProject::Application.routes.draw do
 
   resources :carts, only: [:index, :new] do
     collection do
+      post :validate_coupon
       get :remove
     end
   end

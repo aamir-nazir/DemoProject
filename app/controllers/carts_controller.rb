@@ -2,8 +2,10 @@ class CartsController < ApplicationController
   before_filter :set_product, only: [:remove, :new]
   before_filter :set_price, only: [:index, :validate_coupon]
   before_filter :set_cart
+  before_filter :set_discount_ratio
 
   def index
+    @coupon = DiscountCoupon.new
     @products = @cart.present? ? Product.where(id: @cart) : []
   end
 
@@ -37,6 +39,16 @@ class CartsController < ApplicationController
 
   end
 
+  def validate_coupon
+
+    @exist = DiscountCoupon.active(params[:discount_coupon][:coupon])
+    session[:discounted] = 1 unless @exist.blank?
+    respond_to do |format|
+      format.js
+    end
+
+  end
+
   private
 
   def set_product
@@ -49,5 +61,9 @@ class CartsController < ApplicationController
 
   def set_cart
     @cart = (cookies[:cart].present? && JSON.parse(cookies[:cart]).size > 0) ? JSON.parse(cookies[:cart]) : nil
+  end
+
+  def set_discount_ratio
+    @discount = DiscountCoupon::DISCOUNT
   end
 end

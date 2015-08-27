@@ -7,3 +7,8 @@ if ($("#total-price"))
   $("#total-price").text('$<%= @price %>');
   $.cookie("price", <%= @price %>);
 }
+
+if ($("#discount-price"))
+{
+  $("#discount-price").text('$<%= discounted_price %>');
+}

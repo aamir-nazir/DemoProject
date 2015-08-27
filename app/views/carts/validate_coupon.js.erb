@@ -1,0 +1,15 @@
+<% if @exist.blank? %>
+  $('#discount_coupon_coupon').addClass("pink-color")
+  if($("#errors"))
+  {
+    $('#errors').addClass("discount-div pink-color")
+    $('#errors').text('Your coupon is invalid or expired')
+    $('#discount').empty();
+  }
+<% else %>
+    $('#coupon-form').remove()
+    $('#errors').removeClass("pink-color")
+    $('#errors').addClass("discount-div green-color")
+    $('#errors').text('Your coupon is valid!')
+    $('#discount').append('<%= j render 'carts/discount' %>')
+<% end %>
