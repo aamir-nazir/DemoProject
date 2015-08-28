@@ -2,7 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def after_sign_in_path_for(resource)
-    if resource_class == AdminUser
+    if session[:checkout_path] == 1
+      session.delete(:checkout_path)
+      checkout_orders_path
+    elsif resource_class == AdminUser
       admin_dashboard_path
     elsif resource_class == User
       dashboard_users_path
@@ -12,5 +15,4 @@ class ApplicationController < ActionController::Base
   def cart_encode(cart)
     ActiveSupport::JSON.encode(cart)
   end
-
 end

@@ -6,6 +6,12 @@ DemoProject::Application.routes.draw do
     resources :orders, only: [:index, :show]
   end
 
+  resources :orders, only: [] do
+    collection do
+      get :checkout
+    end
+  end
+
   resources :carts, only: [:index, :new] do
     collection do
       post :validate_coupon
