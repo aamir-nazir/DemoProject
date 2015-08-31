@@ -1,0 +1,8 @@
+<%= form_tag products_path, method: :get do %>
+
+  <div class="form-group">
+    <%= text_area_tag :search, nil, rows: 1, required: true, placeholder: "search products", class: "form-control" %>
+  </div>
+
+  <%= submit_tag "Search", class: "btn btn-primary"  %>
+<% end %>

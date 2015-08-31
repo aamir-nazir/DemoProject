@@ -17,4 +17,9 @@ class Product < ActiveRecord::Base
   has_many :orders, through: :order_products
 
   belongs_to :user
+
+  define_index do
+    indexes title
+    indexes body
+  end
 end
