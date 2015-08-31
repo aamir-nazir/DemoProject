@@ -36,8 +36,4 @@ module ApplicationHelper
     cart = JSON.parse(cookies[:cart])
     cart.include?(id.to_s)
   end
-
-  def discounted_price
-    @price * (100 - @discount)/100
-  end
 end

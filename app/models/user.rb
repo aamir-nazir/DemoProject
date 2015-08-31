@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
     self.picture.photo.url
   end
 
+  def new_order(cart, total, discount, address)
+    self.orders.new(total_items: cart.size, sub_total: total, discount: discount, shipping_address: address)
+  end
+
 end

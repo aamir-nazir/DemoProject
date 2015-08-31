@@ -1,0 +1,19 @@
+<%= form_tag orders_path do %>
+
+  <div class="form-group">
+    <%= label_tag :credit_card_no %>
+    <%= number_field_tag :credit_card_no, '', rows: 1, type: :number, required: true, placeholder: "XXXX-XXXX-XXXX-XXXX", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :card_expiry %>
+    <%= number_field_tag :card_expiry, '', rows: 1, type: :number, required: true, placeholder: "MMYY", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :customer_address %>
+    <%= text_area_tag :customer_address, '', rows: 3, required: true, placeholder: "Enter shiping address", class: "form-control" %>
+  </div>
+
+  <%= submit_tag "Order", class: "btn btn-primary"  %>
+<% end %>

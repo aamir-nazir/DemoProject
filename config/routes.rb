@@ -6,7 +6,7 @@ DemoProject::Application.routes.draw do
     resources :orders, only: [:index, :show]
   end
 
-  resources :orders, only: [] do
+  resources :orders, only: [:create] do
     collection do
       get :checkout
     end

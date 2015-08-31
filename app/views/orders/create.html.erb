@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>Order Details</h1>
+    <div class="table-responsive">
+      <table class="table table-bordered text-center">
+        <tr>
+          <td class="text-center info">Total Amount Paid</td>
+          <td class="text-center">$ <%= @order.sub_total %></td>
+        </tr>
+        <% if @order.discount > 0 %>
+          <tr>
+            <td class="text-center col-md-6 info">Discount</td>
+            <td class="text-center col-md-6"><%= @order.discount %>%</td>
+          </tr>
+        <% end %>
+        <tr>
+          <td class="text-center col-md-6 info">Total Products</td>
+          <td class="text-center col-md-6"><%= @order.total_items %></td>
+        </tr>
+        <tr>
+          <td class="text-center col-md-6 info">Shipping Address</td>
+          <td class="text-center col-md-6"><%= @order.shipping_address %></td>
+        </tr>
+        <tr>
+          <td class="text-center col-md-6 info">Receipt sent at email</td>
+          <td class="text-center col-md-6"><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td class="text-center col-md-6 info">Order Time</td>
+          <td class="text-center col-md-6"><%= @order.created_at %></td>
+        </tr>
+      </table>
+      <%= link_to 'Products', root_path, class: "btn btn-primary" %>
+    <div>
+  </div>
+</div>

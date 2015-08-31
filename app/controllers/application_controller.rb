@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
   def cart_encode(cart)
     ActiveSupport::JSON.encode(cart)
   end
+
+  def discounted_price
+    @price * (100 - @discount)/100
+  end
+
+  helper_method :discounted_price
 end
