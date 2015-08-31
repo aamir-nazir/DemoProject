@@ -20,5 +20,9 @@ class ApplicationController < ActionController::Base
     @price * (100 - @discount)/100
   end
 
+  def after_update_path_for(resource)
+      user_path(resource)
+  end
+
   helper_method :discounted_price
 end
