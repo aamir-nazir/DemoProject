@@ -1,5 +1,5 @@
 class Review < ActiveRecord::Base
-  attr_accessible :body
+  attr_accessible :body, :product_id, :user_id
 
   validates :body, presence: true, length: { maximum: 500 }
 
