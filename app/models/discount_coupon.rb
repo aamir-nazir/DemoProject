@@ -1,5 +1,5 @@
 class DiscountCoupon < ActiveRecord::Base
-  attr_accessible :coupon_id, :is_active
+  attr_accessible :coupon, :is_active
 
   DISCOUNT = 10
 
