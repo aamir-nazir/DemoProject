@@ -25,3 +25,4 @@ public/system/
 db/sphinx/
 log/searchd.development.pid
 config/sphinx.yml
+config/development.sphinx.conf
