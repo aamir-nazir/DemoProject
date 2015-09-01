@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   before_filter :check_login_status, only: [:checkout]
   before_filter :set_user, only: [:checkout, :create]
   before_filter :check_customer_address, only: [:create]
+  before_filter :authorize_user, only: [:index, :show]
 
   def index
     @orders = Order.all
@@ -74,5 +75,12 @@ class OrdersController < ApplicationController
 
   def check_customer_address
     return redirect_to checkout_orders_path, notice: 'Shipping address must not be empty!' if params[:customer_address].blank?
+  end
+
+  def authorize_user
+    unless current_user.id == params[:user_id].to_i
+      flash[:error] = 'You are not allowed to view this page!'
+      return redirect_to root_path
+    end
   end
 end
