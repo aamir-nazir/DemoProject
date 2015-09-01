@@ -19,6 +19,11 @@ ActiveAdmin.register Product do
      link_to "pictures", admin_product_pictures_path(picture)
    end
 
+   column 'Image' do |product|
+      product.pictures.build if product.pictures.blank?
+      image_tag(product.pictures.first.photo.url(:xsmall))
+   end
+
    default_actions
  end
 
