@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
   before_filter :set_user, only: [:checkout, :create]
   before_filter :check_customer_address, only: [:create]
   before_filter :authorize_user, only: [:index, :show]
+  before_filter :validate_cart, only: [:checkout, :create]
 
   def index
     @orders = Order.all
@@ -82,5 +83,9 @@ class OrdersController < ApplicationController
       flash[:error] = 'You are not allowed to view this page!'
       return redirect_to root_path
     end
+  end
+
+  def validate_cart
+    return redirect_to root_path, alert: 'Please add some items in your cart!' if @cart.blank?
   end
 end
