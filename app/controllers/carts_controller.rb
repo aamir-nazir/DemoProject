@@ -3,6 +3,7 @@ class CartsController < ApplicationController
   before_filter :set_price, only: [:index, :validate_coupon]
   before_filter :set_cart
   before_filter :set_discount_ratio
+  before_filter :validate_cart, only: [:index]
 
   def index
     @coupon = DiscountCoupon.new
@@ -65,5 +66,9 @@ class CartsController < ApplicationController
 
   def set_discount_ratio
     @discount = DiscountCoupon::DISCOUNT
+  end
+
+  def validate_cart
+    return redirect_to root_path, alert: 'Please add some items in your cart!' if @cart.blank?
   end
 end
