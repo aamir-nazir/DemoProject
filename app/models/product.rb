@@ -22,5 +22,13 @@ class Product < ActiveRecord::Base
     indexes title
     indexes body
     set_property delta: true
+
+    has :created_at
   end
+
+  def self.perform_search(options = {})
+    options[:per_page] = PER_PAGE if options.present?
+    self.search options[:search], options
+  end
+
 end
