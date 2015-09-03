@@ -36,4 +36,8 @@ module ApplicationHelper
     cart = JSON.parse(cookies[:cart])
     cart.include?(id.to_s)
   end
+
+  def user_name(user)
+    "#{user.first_name} #{user.last_name}".titleize
+  end
 end
