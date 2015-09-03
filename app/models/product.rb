@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  PER_PAGE = 20
+  PER_PAGE = 12
 
   attr_accessible :body, :price, :title, :pictures_attributes
 
@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
   scope :find_products, ->(id) { where(id: id) }
 
   has_many :pictures, as: :imageable, dependent: :destroy
-  accepts_nested_attributes_for :pictures, allow_destroy: true
+  accepts_nested_attributes_for :pictures, reject_if: proc { |attributes| attributes['photo'].blank? }, allow_destroy: true
   has_many :reviews, dependent: :destroy
   has_many :order_products, dependent: :destroy
   has_many :orders, through: :order_products

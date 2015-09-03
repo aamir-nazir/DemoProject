@@ -1,35 +1,30 @@
 <div class="row">
   <div class="col-md-12">
-    <%= render 'search' %>
-    <h1>Listing Products</h1>
+    <h1>Products Listing</h1>
     <%= paginate @products %>
-    <div class="table-responsive">
-      <table class="table table-bordered text-center">
-        <tr class="bg-primary">
-          <th class="text-center">Title</th>
-          <th class="text-center col-md-6">Body</th>
-          <th class="text-center">Price</th>
-          <th></th>
-          <th></th>
-        </tr>
-
-        <% @products.each do |product| %>
-          <tr>
-            <td><%= product.title %></td>
-            <td><%= truncate_text(100, product.body) %></td>
-            <td class="info" >$<%= product.price %></td>
-            <td><%= link_to 'Show', product %></td>
-            <% unless in_cart(product.id) %>
-              <td ><%= link_to 'Add to cart', new_cart_path, data: { remote: true, params: { product_id: product.id}.to_param }, id: product.id %></td>
-            <% else %>
-              <td ><%= link_to 'Remove from cart', remove_carts_path, data: { remote: true, params: { product_id: product.id }.to_param }, id: product.id %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </table>
-
-      <%= link_to 'New Product', new_product_path, class: "btn btn-primary" %>
-      <%= link_to 'Show Cart', carts_path, class: "btn btn-primary" %>
-    <div>
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-sm-6 col-md-3">
+          <div class="thumbnail product-tile">
+            <%= link_to( image_tag(product_photo(product, :small), class: 'img-rounded'), product_path(product)) %>
+            <div class="caption">
+              <h4><%= product.title %></h4>
+              <h4>$<%= product.price %></h4>
+              <div>
+                <% unless in_cart(product.id) %>
+                  <%= link_to 'Add to cart', new_cart_path, class: "btn btn-primary", data: { remote: true, params: { product_id: product.id}.to_param }, id: product.id %>
+                <% else %>
+                  <%= link_to 'Remove from cart', remove_carts_path, class: "btn btn-primary", data: { remote: true, params: { product_id: product.id }.to_param }, id: product.id %>
+                <% end %>
+                <strong><%= link_to "by #{user_name(product.user)}", user_path(product.user) %></strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-6 table-pagination">
+      <%= paginate @products %>
+    </div>
   </div>
 </div>
