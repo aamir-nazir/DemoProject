@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   PER_PAGE = 12
 
-  attr_accessible :body, :price, :title, :pictures_attributes
+  attr_accessible :body, :price, :title, :pictures_attributes, :user_id, :delta
 
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 500 }
