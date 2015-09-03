@@ -52,23 +52,23 @@ class CartsController < ApplicationController
 
   private
 
-  def set_product
-    @product = Product.find_products(params[:product_id]).first
-  end
+    def set_product
+      @product = Product.find_products(params[:product_id]).first
+    end
 
-  def set_price
-    @price = cookies[:cart].present? ? Product.find_products(JSON.parse(cookies[:cart])).sum(:price) : 0
-  end
+    def set_price
+      @price = cookies[:cart].present? ? Product.find_products(JSON.parse(cookies[:cart])).sum(:price) : 0
+    end
 
-  def set_cart
-    @cart = (cookies[:cart].present? && JSON.parse(cookies[:cart]).size > 0) ? JSON.parse(cookies[:cart]) : nil
-  end
+    def set_cart
+      @cart = (cookies[:cart].present? && JSON.parse(cookies[:cart]).size > 0) ? JSON.parse(cookies[:cart]) : nil
+    end
 
-  def set_discount_ratio
-    @discount = DiscountCoupon::DISCOUNT
-  end
+    def set_discount_ratio
+      @discount = DiscountCoupon::DISCOUNT
+    end
 
-  def validate_cart
-    return redirect_to root_path, alert: 'Please add some items in your cart!' if @cart.blank?
-  end
+    def validate_cart
+      return redirect_to root_path, alert: 'Please add some items in your cart!' if @cart.blank?
+    end
 end

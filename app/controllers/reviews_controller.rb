@@ -31,46 +31,61 @@ class ReviewsController < ApplicationController
         format.html { redirect_to product_reviews_path(@product), notice: 'Your review is posted sucessfully!' }
         format.js
       else
-        format.html { redirect_to new_product_review_path(@product), notice: 'Please enter some text for review!' }
+        format.html { redirect_to new_product_review_path(@product), flash[:error] = 'Please enter some text for review!' }
         format.js
       end
     end
   end
 
   def update
-    flash[:notice] = 'Review updated sucessfully!' if @review.update_attributes(params[:review])
+    if @review.update_attributes(params[:review])
+      flash[:notice] = 'Review updated sucessfully!'
+    else
+      flash[:error] = 'Review not updated!'
+    end
     redirect_to product_reviews_path(@product)
   end
 
   def destroy
-    flash[:notice] = 'Review destroyed sucessfully!' if @review.destroy
+    if @review.destroy
+      flash[:notice] = 'Review deleted sucessfully!'
+    else
+      flash[:notice] = 'Review deletion failed!'
+    end
     redirect_to product_path(@product)
   end
 
   private
 
-  def set_review
-    @review = Review.find(params[:id])
-  end
-
-  def set_product
-    @product = Product.find(params[:product_id])
-  end
-
-  def validate_user_for_review
-    return redirect_to product_path(@product), notice: "User cannot review his own product!" if current_user.id == @product.user_id
-  end
-
-  def validate_user_for_destroy
-    if current_user.id == @review.user_id || current_user.id == @product.user_id
-      flash[:notice] = "Review deleted Sucessfully!"
-    else
-      return redirect_to product_path(@product), notice: "User can only delete his own reviews!"
+    def set_review
+      @review = Review.find(params[:id])
     end
-  end
 
-  def validate_user_for_edit
-    return redirect_to product_path(@product), notice: "User can only edit his own reviews!" unless current_user.id == @review.user_id
-  end
+    def set_product
+      @product = Product.find(params[:product_id])
+    end
+
+    def validate_user_for_review
+      if current_user.id == @product.user_id
+        flash[:error] = "User cannot review on his own product!"
+        return redirect_to product_path(@product)
+      end
+    end
+
+    def validate_user_for_destroy
+      if current_user.id == @review.user_id || current_user.id == @product.user_id
+        flash[:notice] = "Review deleted Sucessfully!"
+      else
+        flash[:error] = "User can only delete his own reviews or only if he/she is Product seller!"
+        return redirect_to product_path(@product)
+      end
+    end
+
+    def validate_user_for_edit
+      unless current_user.id == @review.user_id
+        flash[:error] = "User can only edit his own reviews!"
+        return redirect_to product_path(@product)
+      end
+    end
 
 end

@@ -34,11 +34,14 @@ class OrdersController < ApplicationController
     response = @order.process_payment(@sub_total, params[:credit_card_no], params[:card_expiry], @user, params[:customer_address])
 
     if response.success?
-      flash[:notice] = "Successfully made a purchase (authorization code: #{response.authorization_code})"
+      flash[:notice] = "Successfully made a purchase"
 
       @order.products << Product.find_products(@cart)
 
-      redirect_to root_path, error: "Sorry your order has not been sucessfull!" unless @order.save
+      unless @order.save
+        flash[:error] = 'Sorry your order has not been sucessfull!'
+        redirect_to root_path
+      end
       cookies.delete(:cart)
     else
       redirect_to checkout_orders_path, notice: response.response_reason_text
@@ -51,41 +54,44 @@ class OrdersController < ApplicationController
 
   private
 
-  def set_price
-    @price = cookies[:cart].present? ? Product.find_products(JSON.parse(cookies[:cart])).sum(:price) : 0
-  end
-
-  def set_cart
-    @cart = JSON.parse(cookies[:cart]) if (cookies[:cart].present? && JSON.parse(cookies[:cart]).size > 0)
-  end
-
-  def set_discount_ratio
-    @discount = DiscountCoupon::DISCOUNT
-  end
-
-  def check_login_status
-    unless user_signed_in?
-      session[:checkout_path] = 1
-      return redirect_to new_user_session_path, notice: 'Please login to purchase items!'
+    def set_price
+      @price = cookies[:cart].present? ? Product.find_products(JSON.parse(cookies[:cart])).sum(:price) : 0
     end
-  end
 
-  def set_user
-    @user = User.find(current_user.id) if user_signed_in?
-  end
-
-  def check_customer_address
-    return redirect_to checkout_orders_path, notice: 'Shipping address must not be empty!' if params[:customer_address].blank?
-  end
-
-  def authorize_user
-    unless current_user.id == params[:user_id].to_i
-      flash[:error] = 'You are not allowed to view this page!'
-      return redirect_to root_path
+    def set_cart
+      @cart = JSON.parse(cookies[:cart]) if (cookies[:cart].present? && JSON.parse(cookies[:cart]).size > 0)
     end
-  end
 
-  def validate_cart
-    return redirect_to root_path, alert: 'Please add some items in your cart!' if @cart.blank?
-  end
+    def set_discount_ratio
+      @discount = DiscountCoupon::DISCOUNT
+    end
+
+    def check_login_status
+      unless user_signed_in?
+        session[:checkout_path] = 1
+        return redirect_to new_user_session_path, notice: 'Please login to purchase items!'
+      end
+    end
+
+    def set_user
+      @user = User.find(current_user.id) if user_signed_in?
+    end
+
+    def check_customer_address
+      if params[:customer_address].blank?
+        flash[:error] = 'Shipping address must not be empty!'
+        return redirect_to checkout_orders_path
+      end
+    end
+
+    def authorize_user
+      unless current_user.id == params[:user_id].to_i
+        flash[:error] = 'You are not allowed to view this page!'
+        return redirect_to root_path
+      end
+    end
+
+    def validate_cart
+      return redirect_to root_path, alert: 'Please add some items in your cart!' if @cart.blank?
+    end
 end

@@ -32,19 +32,27 @@ class ProductsController < ApplicationController
     if @product.save
       flash[:notice] = 'Product created sucessfully!'
     else
-      flash[:notice] = 'Product creation failed!'
+      flash[:error] = 'Product creation failed!'
     end
     respond_with(@product)
   end
 
   def update
-    @product.update_attributes(params[:product])
+    if @product.update_attributes(params[:product])
+      flash[:notice] = 'Your product is updated sucessfully!'
+    else
+      flash[:error] = 'Product not updated!'
+    end
     respond_with(@product)
   end
 
   def destroy
-    @product.destroy
-    respond_with(@product)
+    if @product.destroy
+      flash[:notice] = 'Product deleted sucessfully!'
+    else
+      flash[:error] = 'Product deletion failed!'
+    end
+    redirect_to dashboard_users_path(@user)
   end
 
   private
@@ -58,7 +66,8 @@ class ProductsController < ApplicationController
 
     def validate_user
       unless current_user.id == @product.user_id
-        return redirect_to root_path, notice: "Not enough Rights!"
+        flash[:error] = 'Not enough Rights!'
+        return redirect_to root_path
       end
     end
 end
