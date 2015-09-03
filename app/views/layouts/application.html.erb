@@ -7,11 +7,14 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
-  <%= render 'layouts/header' %>
   <body>
-    <%= render 'layouts/flash', flash: flash %>
-    <div class="container">
-      <%= yield %>
+    <div class="wrapper-container">
+      <%= render 'layouts/header' %>
+      <%= render 'layouts/flash', flash: flash %>
+      <div class="container body-bottom-margin">
+        <%= yield %>
+      </div>
     </div>
+    <%= render 'layouts/footer', flash: flash %>
   </body>
 </html>

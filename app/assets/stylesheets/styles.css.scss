@@ -1,18 +1,26 @@
-.nav-color{
+html, body {
+  height: 100%;
+}
+
+.wrapper-container {
+  min-height: 100%;
+}
+
+.nav-color {
   background-color: #337ab7;
 }
 
-.cart{
+.cart {
   color: white;
   font-size: 40px;
 }
 
-.sign-up{
+.sign-up {
   max-width: 450px;
   width: 100%;
 }
 
-.forgot-password{
+.forgot-password {
   max-width: 310px;
   width: 100%;
 }
@@ -21,20 +29,86 @@
   color: white;
 }
 
-.discount-div{
+.discount-div {
   height: 30px;
-  text: bold;
+  font-weight: bold;
   font-size: 20px;
+  padding: 5px;
 }
 
-.green-color{
+.green-color {
   background-color: LightGreen;
 }
 
-.pink-color{
+.pink-color {
   background-color: LightPink;
 }
 
-.user-detail-margin{
+.user-detail-margin {
   margin-bottom: 20px;
+}
+
+.footer-margin {
+  margin-top: 20px;
+}
+
+.footer-background {
+  background-color: #337ab7;
+}
+.owner-link {
+  text-align: right;
+  display: block;
+}
+
+.blue-text {
+  color: #337ab7;
+}
+
+.table-pagination ul {
+  margin: 0px;
+}
+
+.product-tile {
+  min-height: 300px;
+}
+
+.tile-background {
+  background-color: lighten(#000, 93.5%);
+}
+.white-color {
+  color: White;
+}
+
+.gray-color {
+  color: Gray;
+}
+
+.review-tile {
+  min-height: 134px;
+  padding: 13px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom:19px;
+  left: 26px;
+}
+
+.bottom-zero {
+  margin-bottom:0px;
+}
+.show-image-padding {
+  padding: 15px;
+}
+
+.body-bottom-margin {
+  margin-bottom: 80px;
+}
+
+.footer-content {
+  line-height: 50px;
+  min-height: 50px;
+  height: 100%;
 }
