@@ -42,7 +42,6 @@
     <div class="form-group">
       <%= f.fields_for :picture, current_user.profile_picture do |user_picture| %>
       <%= image_tag user_photo(current_user, :small), class: "img-rounded" %>
-      <%= user_picture.link_to_remove "Remove Picture" %>
       <% end %>
     </div>
 
