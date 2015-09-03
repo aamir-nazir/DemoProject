@@ -1,5 +1,7 @@
 <% if @review.valid? %>
+  $('#no-comments-header').fadeOut(600, function() { $(this).remove(); })
   $('#reviews').append('<%= j render(@review) %>')
+  $('#reviews-table').removeClass("hide").slideDown('slow')
   $('#review_body').val("")
 <% else %>
   alert("Please enter some text for review")

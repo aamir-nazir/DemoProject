@@ -1,23 +1,26 @@
-<h1>Listing reviews</h1>
+<% if @reviews.present? %>
+  <h1>Reviews</h1>
 
-<div id="reviews" class="table-responsive">
-  <table class="table table-bordered text-center">
-    <tr class="bg-primary">
-      <th class="text-center col-md-10">Review Text</th>
-      <th></th>
-    </tr>
-    <tr>
-    <% @reviews.each do |review| %>
-      <td ><%= truncate_text(200, review.body) %></td>
-      <% if user_authorized(@product.user_id) || user_authorized(review.user_id) %>
-        <td><%= link_to 'Destroy', product_review_path(@product, review), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% else %>
-        <td></td>
+  <div id="reviews" class="table-responsive">
+    <table class="table table-bordered text-center">
+      <tr class="bg-primary">
+        <th class="text-center col-md-10">Review Text</th>
+        <th></th>
+      </tr>
+      <tr>
+      <% @reviews.each do |review| %>
+        <td><%= truncate_text(200, review.body) %></td>
+        <% if user_authorized(@product.user_id) || user_authorized(review.user_id) %>
+          <td><%= link_to 'Delete', product_review_path(@product, review), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+      </tr>
       <% end %>
-    </tr>
-    <% end %>
-  </table>
-</div>
-
-<%= link_to 'New Review', new_product_review_path(params[:product_id]) unless user_authorized(@product.user_id) %>
-<%= link_to 'Back', product_path(params[:product_id]) %>
+    </table>
+  </div>
+<% else %>
+  <h1 class="blue-text">No reviews on product yet!</h1>
+<% end %>
+<%= link_to 'New Review', new_product_review_path(params[:product_id]), class: "btn btn-primary" unless user_authorized(@product.user_id) %>
+<%= link_to 'Back to Product Page', product_path(params[:product_id]), class: "btn btn-primary" %>

@@ -1,13 +1,28 @@
-<tr>
-  <td><%= truncate_text(200, review.body) %></td>
-  <% if user_authorized(review.user_id) %>
-    <td><%= link_to 'Edit', edit_product_review_path(@product, review) %></td>
-    <td><%= link_to 'Destroy', product_review_path(@product, review), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <% elsif user_authorized(@product.user_id) %>
-    <td></td>
-    <td><%= link_to 'Destroy', product_review_path(@product, review), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <% else %>
-    <td></td>
-    <td></td>
-  <% end %>
-</tr>
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+    <div class="col-md-2 bg-success review-tile">
+      <%= link_to( image_tag(user_photo(review.user, :xsmall), class: 'img-rounded'), user_path(review.user)) %>
+      <div class="caption">
+        <h4 class="bottom-zero"><%= link_to user_name(review.user), user_path(review.user) %></h4>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="bg-info review-tile">
+        <div class="gray-color">
+          <%= review.created_at.strftime("%d %b %Y %H:%M %P") %>
+        </div>
+        <div>
+          <%= truncate_text(200, review.body) %>
+        </div>
+        <div class="bottom-left">
+          <% if user_authorized(review.user_id) %>
+            <td><%= link_to 'Edit', edit_product_review_path(@product, review) %></td>
+            <td><%= link_to 'Destroy', product_review_path(@product, review), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% elsif user_authorized(@product.user_id) %>
+            <td><%= link_to 'Destroy', product_review_path(@product, review), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
