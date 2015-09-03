@@ -29,4 +29,12 @@ class User < ActiveRecord::Base
     self.orders.new(total_items: cart.size, sub_total: total, discount: discount, shipping_address: address)
   end
 
+  def get_products(page)
+    self.products.ordered.page(page).per(Product::PER_PAGE)
+  end
+
+  def get_reviews(page)
+    self.reviews.includes(:product).ordered.page(page).per(Review::PER_PAGE)
+  end
+
 end

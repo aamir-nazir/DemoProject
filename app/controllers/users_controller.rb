@@ -7,8 +7,8 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    @products = current_user.products.includes(:pictures).ordered.page(params[:product_page]).per(User::PRODUCTS_PER_PAGE)
-    @reviews = current_user.reviews.includes(:product).page(params[:review_page]).per(Review::PER_PAGE)
+    @products = current_user.get_products(params[:product_page])
+    @reviews = current_user.get_reviews(params[:review_page])
   end
 
   private
