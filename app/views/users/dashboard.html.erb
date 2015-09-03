@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-md-12">
     <h1 >Dashboard</h1>
-    <h2>Listing User products</h2>
+    <h2>User Products</h2>
     <div class="table-responsive">
       <table class="table table-bordered text-center">
         <tr class="bg-primary">
           <th class="text-center">Title</th>
-          <th class="text-center col-md-6">Body</th>
+          <th class="text-center col-md-6">Description</th>
           <th class="text-center">Price</th>
           <th class="text-center"></th>
           <th class="text-center"></th>
@@ -17,7 +17,7 @@
         <%= paginate @products, param_name: 'product_page' %>
       </table>
 
-      <h2>Listing User reviews</h2>
+      <h2>User Reviews</h2>
       <div class="table-responsive">
         <table class="table table-bordered text-center">
           <tr class="bg-primary">
