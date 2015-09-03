@@ -8,7 +8,7 @@
           <div class="thumbnail product-tile">
             <%= link_to( image_tag(product_photo(product, :small), class: 'img-rounded'), product_path(product)) %>
             <div class="caption">
-              <h4><%= product.title %></h4>
+              <h4><%= product.title.titleize %></h4>
               <h4>$<%= product.price %></h4>
               <div>
                 <% unless in_cart(product.id) %>
