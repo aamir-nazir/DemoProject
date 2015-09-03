@@ -33,14 +33,14 @@
         </tr>
       </table>
       <% if @cart && session[:discounted] != 1 %>
-          <%= form_for @coupon, url: validate_coupon_carts_path , remote: true, html: { id: 'coupon-form' } do |f| %>
-            <div class="form-group" id="coupon-form">
-              <%= f.text_area :coupon, required: true, class: "form-control", rows: 1, placeholder: "Enter discount coupon id (optional)" %>
-            </div>
-            <div class="form-group">
-              <%= f.submit 'Validate Coupon', class: "btn btn-primary" %>
-            </div>
-          <% end %>
+        <%= form_for @coupon, url: validate_coupon_carts_path , remote: true, html: { id: 'coupon-form' } do |f| %>
+          <div class="form-group" id="coupon-form">
+            <%= f.text_area :coupon, required: true, class: "form-control", rows: 1, placeholder: "Enter discount coupon id (optional)" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit 'Validate Coupon', class: "btn btn-primary" %>
+          </div>
+        <% end %>
       <% end %>
       <%= link_to 'Add More Items', products_path, class: "btn btn-primary" %>
       <%= link_to 'Buy All', checkout_orders_path, class: "btn btn-primary pull-right buy-all-btn" %>
