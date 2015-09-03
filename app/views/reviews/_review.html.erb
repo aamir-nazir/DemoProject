@@ -9,7 +9,7 @@
     <div class="col-md-10">
       <div class="bg-info review-tile">
         <div class="gray-color">
-          <%= review.created_at.strftime("%d %b %Y %H:%M %P") %>
+          <%= review.created_at.strftime("%d %b %Y %I:%m %p") %>
         </div>
         <div>
           <%= truncate_text(200, review.body) %>
