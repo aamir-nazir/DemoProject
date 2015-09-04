@@ -60,5 +60,7 @@ module DemoProject
     config.assets.version = '1.0'
     config.app_generators.scaffold_controller = :scaffold_controller
     config.assets.initialize_on_precompile = false
+    config.assets.precompile += %w( *.eot *.svg *.ttf *.woff *.otf)
+    I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.yml').to_s]
   end
 end
