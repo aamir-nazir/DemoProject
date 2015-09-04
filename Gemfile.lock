@@ -130,6 +130,7 @@ GEM
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
+    pg (0.18.3)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.5)
@@ -208,6 +209,7 @@ DEPENDENCIES
   mysql2
   nested_form
   paperclip!
+  pg
   rails (= 3.2.18)
   sass-rails (~> 3.2.3)
   thinking-sphinx (= 2.0.11)
