@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150901080343) do
+ActiveRecord::Schema.define(:version => 20150904052224) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20150901080343) do
     t.decimal  "discount",         :precision => 8, :scale => 2, :null => false
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
-    t.string   "shipping_address",                               :null => false
+    t.text     "shipping_address",                               :null => false
   end
 
   create_table "pictures", :force => true do |t|
