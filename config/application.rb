@@ -62,5 +62,6 @@ module DemoProject
     config.assets.initialize_on_precompile = false
     config.assets.precompile += %w( *.eot *.svg *.ttf *.woff *.otf)
     I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.yml').to_s]
+    I18n.locale = :en
   end
 end
