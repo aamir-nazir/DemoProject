@@ -10,6 +10,8 @@ class Order < ActiveRecord::Base
   validates :sub_total, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :discount, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
+  scope :find_orders, ->(user_id) { where(user_id: user_id) }
+
   def process_payment(sub_total, credit_card_no, card_expiry, user, address)
     transaction = AuthorizeNet::AIM::Transaction.new(API_LOGIN_ID, API_TRANSACTION_ID, gateway: :sandbox)
     credit_card = AuthorizeNet::CreditCard.new(credit_card_no, card_expiry)

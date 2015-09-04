@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   before_filter :validate_cart, only: [:checkout, :create]
 
   def index
-    @orders = Order.all
+    @orders = Order.find_orders(params[:user_id])
 
     respond_to do |format|
       format.html
