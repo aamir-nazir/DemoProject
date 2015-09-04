@@ -7,7 +7,12 @@ class ProductsController < ApplicationController
   respond_to :html
 
   def index
-    @products =  Product.perform_search({search: params[:search], order: 'created_at DESC', page: params[:page]})
+    if params.has_key?(:search)
+      @products =  Product.perform_search({search: params[:search], order: 'created_at DESC', page: params[:page]})
+    else
+      @products = Product.ordered.page(params[:page]).per(Product::PER_PAGE)
+    end
+
     respond_with(@products)
   end
 
